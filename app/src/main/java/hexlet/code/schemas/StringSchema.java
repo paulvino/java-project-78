@@ -1,57 +1,26 @@
 package hexlet.code.schemas;
 
-public final class StringSchema {
-    private boolean required;
-    private boolean minLength;
-    private boolean contains;
-    private int minLengthOfString;
-    private String content;
+import java.util.LinkedHashMap;
+
+public final class StringSchema extends BaseSchema {
 
     public StringSchema() {
-        required = false;
-        minLength = false;
-        contains = false;
+        checks = new LinkedHashMap<>();
+        addCheck("typeData", value -> value instanceof String || value == null);
     }
 
     public StringSchema required() {
-        required = true;
+        addCheck("required", value -> value instanceof String && !((String) value).isEmpty());
         return this;
     }
 
     public StringSchema minLength(int num) {
-        minLength = true;
-        minLengthOfString = num;
+        addCheck("minLength", value -> ((String) value).length() >= num);
         return this;
     }
 
     public StringSchema contains(String str) {
-        contains = true;
-        content = str;
+        addCheck("contains", value -> value.toString().contains(str));
         return this;
-    }
-
-    public boolean isValid(Object data) {
-        return isRequired(data) && isMinLength(data) && isContains(data);
-    }
-
-    private boolean isRequired(Object data) {
-        if (required) {
-            return data != null && !data.equals("");
-        }
-        return true;
-    }
-
-    private boolean isMinLength(Object data) {
-        if (minLength) {
-            return data.toString().length() >= minLengthOfString;
-        }
-        return true;
-    }
-
-    private boolean isContains(Object data) {
-        if (contains) {
-            return data.toString().contains(content);
-        }
-        return true;
     }
 }
