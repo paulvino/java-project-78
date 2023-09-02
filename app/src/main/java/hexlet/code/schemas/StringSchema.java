@@ -1,11 +1,8 @@
 package hexlet.code.schemas;
 
-import java.util.LinkedHashMap;
-
 public final class StringSchema extends BaseSchema {
 
     public StringSchema() {
-        checks = new LinkedHashMap<>();
         addCheck("typeData", value -> value instanceof String || value == null);
     }
 

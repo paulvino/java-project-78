@@ -1,11 +1,9 @@
 package hexlet.code.schemas;
 
-import java.util.LinkedHashMap;
 
 public class NumberSchema extends BaseSchema {
 
     public NumberSchema() {
-        checks = new LinkedHashMap<>();
         addCheck("typeData", value -> value instanceof Integer || value == null);
     }
 
@@ -15,7 +13,7 @@ public class NumberSchema extends BaseSchema {
     }
 
     public NumberSchema positive() {
-        addCheck("positive", value -> ((int) value > 0));
+        addCheck("positive", value -> value == null || ((int) value > 0));
         return this;
     }
 

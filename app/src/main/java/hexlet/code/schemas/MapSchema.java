@@ -1,11 +1,9 @@
 package hexlet.code.schemas;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MapSchema extends BaseSchema {
     public MapSchema() {
-        checks = new LinkedHashMap<>();
         addCheck("typeData", value -> value instanceof Map<?, ?> || value == null);
     }
 
@@ -14,8 +12,17 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
-    public MapSchema sizeof(int size) {
-        addCheck("sizeof", value -> ((Map) value).size() == size);
+    public MapSchema sizeOf(int size) {
+        addCheck("sizeOf", value -> ((Map) value).size() == size);
+        return this;
+    }
+
+    public MapSchema shape(Map<String, BaseSchema> schemas) {
+        addCheck("shape", value -> schemas.entrySet()
+                .stream()
+                .allMatch(el -> el.getValue()
+                                .isValid(((Map) value)
+                                .get(el.getKey()))));
         return this;
     }
 }

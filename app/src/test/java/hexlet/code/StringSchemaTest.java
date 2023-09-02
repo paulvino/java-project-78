@@ -70,7 +70,7 @@ public class StringSchemaTest {
         StringSchema schema = v.string().required().minLength(5).contains("ma");
 
         assertTrue(schema.isValid("We only humans after all"));
-        assertTrue(schema.isValid("In does not even matter"));
+        assertTrue(schema.isValid("It does not even matter"));
         assertFalse(schema.isValid("wops"));
         assertFalse(schema.isValid(""));
         assertFalse(schema.isValid(null));
