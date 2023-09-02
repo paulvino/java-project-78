@@ -12,8 +12,8 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
-    public MapSchema sizeOf(int size) {
-        addCheck("sizeOf", value -> ((Map) value).size() == size);
+    public MapSchema sizeof(int size) {
+        addCheck("sizeof", value -> ((Map) value).size() == size);
         return this;
     }
 
