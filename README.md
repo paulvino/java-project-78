@@ -77,7 +77,7 @@ numberSchema.isValid(3); // true
 #### Map Schema
 Map schema contains three validation methods:
 * required() - passed value must not equal null and must be a Map type
-* sizeOf() - number of key-value pairs must not be less than the transferred value
+* sizeof() - number of key-value pairs must not be less than the transferred value
 * shape() - allows you to describe validation for the values of each key of a Map object
 
 ``` java
@@ -92,7 +92,7 @@ mapSchema.isValid(null); // false
 Map<String, String> data = new HashMap<>();
 mapSchema.isValid(data); // true
 
-mapSchema.sizeOf(2);
+mapSchema.sizeof(2);
 mapSchema.isValid(data); // false
 
 data.put("key1", "value1");

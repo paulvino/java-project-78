@@ -1,7 +1,7 @@
 package hexlet.code.schemas;
 
 
-public class NumberSchema extends BaseSchema {
+public final class NumberSchema extends BaseSchema {
 
     public NumberSchema() {
         addCheck("typeData", value -> value instanceof Integer || value == null);

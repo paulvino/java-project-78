@@ -11,7 +11,7 @@ public abstract class BaseSchema {
         checks.put(name, check);
     }
 
-    public boolean isValid(Object value) {
+    public final boolean isValid(Object value) {
         for (Predicate<Object> validate: checks.values()) {
             if (!validate.test(value)) {
                 return false;
